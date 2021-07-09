@@ -1,0 +1,35 @@
+{% extends 'base.html' %}{% block title %} Nuevo evento{% endblock %} {% block content %}
+
+<main>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-8 my-2">
+        <div class="card w-75">
+          <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            New Event
+          </div>
+          <div class="card-body">
+            <form
+              method="POST"
+              id="conf_form"
+              data-url="{% url 'load_materias' %}"
+              data-url2="{% url 'load_docentes' %}"
+            >
+              {% csrf_token %} {{form.as_p}}
+
+              <input
+                class="btn btn-outline-primary"
+                type="submit"
+                value="save"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

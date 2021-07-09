@@ -1,0 +1,72 @@
+{%extends "cuentas/base-login.html"%} {%block content %}
+
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <h3 id="form-title">Create account</h3>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+
+                <form method="POST" action="">
+
+                    {%csrf_token%}
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        {{form.username}}
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        {{form.email}}
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{form.password1}}
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{form.password2}}
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <input class="btn login_btn" type="submit" value="Create">
+                    </div>
+                </form>
+
+            </div>
+            {%if form.errors %}
+            <div id="messages">{{form.errors}}</div>
+            {%endif%}
+
+            <div class="mt-4">
+                <div class="d-flex justify-content-center links">
+                    Already have an account? <a href="{% url 'login' %}" class="ml-2">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    console.log("ready for this");
+    $('#id_username').addClass('form-control').attr("placeholder", "usuario");
+    $('#id_email').addClass('form-control').attr("placeholder", "email");
+    $('#id_password1').addClass('form-control').attr("placeholder", "password   ");
+    $('#id_password2').addClass('form-control').attr("placeholder", "re-ingrese pass");
+</script>
+
+
+
+{%endblock%}

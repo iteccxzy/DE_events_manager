@@ -1,0 +1,1 @@
+web: gunicorn TS.wsgi --log-file - --log-level debug

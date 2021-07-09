@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block title %} Listado de materias{% endblock %} {%block content %}
+
+<main>
+    <div class="container-fluid">
+
+        <div class="card w-75">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Section
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Section</th>
+                                <th>Task</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if Materias %} {% for materia in Materias %}
+                            <tr>
+                                <td>{{materia.descripcion}}</td>
+
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-primary mr-1 rounded"
+                                            href="{% url 'editar_materia' materia.materia_id %}">Edit</a>
+                                        <a class="btn btn-outline-secondary rounded"
+                                            href="{% url 'eliminar_materia' materia.materia_id %}">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {%endfor%} {%endif%}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

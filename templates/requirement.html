@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block title %} solicitudes del día {% endblock %} {%block content %}
+<main>
+
+    <div class="container-fluid">
+        <br>
+
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                requests
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Section</th>
+                                <th>User</th>
+                                <th>day</th>
+                                <th>time</th>
+                                <th>Bim</th>
+                                <th>Channel</th>
+                                <th>Category</th>
+                                <th>Start time </th>
+                                <th>Ok</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% if sol %} {% for s in sol %}
+                            <tr name ="{{s.solicitud_id}}">
+                                <td>{{s.carrera.descripcion}}</td>
+                                <td>{{s.materia.descripcion}}</td>
+                                <td>{{s.docente.apellidos}}&#44; {{s.docente.nombre}}</td>
+                                <td>{{s.dia }}</td>
+                                <td>{{s.horario.hora}}</td>
+                                <td>
+                                    <select id="bim" name="bim" class="form-control form-control-sm">
+                                        {%for b in bim%}
+                                        <option value="{{b.bim_id}}"> {{b.descripcion}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="canal" name="canal" class="form-control form-control-sm">
+                                        {%for c in canal%}
+                                        <option value="{{c.canal_id}}">{{c.descripcion}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control form-control-sm" id="categ" name="categ" >
+                                        {%for cat in categoria%}
+                                        <option value="{{cat.categoria_id}}">{{cat.descripcion}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input id="req_inicio" name="req_inicio" type="date" class="form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm req" data-url="{% url 'req_save'%}"
+                                        data-carrera="{{s.carrera.carrera_id}}" data-materia="{{s.materia.materia_id}}"
+                                        data-docente="{{s.docente.docente_id}}" data-horario="{{s.horario.hora}}"
+                                        data-solid="{{s.solicitud_id}}">
+                                        Add
+                                    </button>
+                                </td>
+
+                            </tr>
+                            {%endfor%}
+
+                            {%endif%}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

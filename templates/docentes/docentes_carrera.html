@@ -1,0 +1,32 @@
+{% extends 'base.html' %}{% block title %}Nuevo docente{% endblock %} {% block content %}
+
+<main>
+    <div class="container-fluid">
+
+        <div class="card w-75">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                New User
+            </div>
+            <div class="card-body">
+                <form method="POST" id="conf_form">
+
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    {% for field in formset %}
+                    {{field.nombre.label_tag}}
+                    {{field.nombre}}
+                    {{field.apellidos.label_tag}}
+                    {{field.apellidos}}
+
+                    <hr>
+                    {% endfor %}
+                    <input class="btn btn-outline-primary btn-sm" type="submit" value="Guardar">
+                </form>
+            </div>
+        </div>
+        <div style="height: 100vh;"></div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block title %} Listado de carreras{% endblock %} {%block content %}
+
+
+<main>
+    <div class="container-fluid">
+        <div class="card w-75">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Departments
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Departments</th>
+                                <th>Task</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% if Carreras %} {% for carrera in Carreras %}
+                            <tr>
+                                <td>{{carrera.descripcion}}</td>
+                                <td>
+
+                                    <a class="btn btn-outline-secondary btn-sm"
+                                        href="{% url 'editar_carrera' carrera.carrera_id %}">Edit</a>
+                                    <a class="btn btn-outline-secondary btn-sm"
+                                        href="{% url 'eliminar_carrera' carrera.carrera_id %}">Delete</a>
+
+                                    <a class="btn btn-outline-secondary btn-sm"
+                                        href="{% url 'nuevo_docente_c_v' carrera.carrera_id %}">Add user</a>
+
+                                    <a class="btn btn-outline-secondary btn-sm"
+                                        href="{% url 'materia_c_v' carrera.carrera_id %}">Add section</a>
+
+
+                                </td>
+                            </tr>
+                            {%endfor%} {%endif%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}

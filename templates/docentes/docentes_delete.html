@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %} Eliminar docente{% endblock %} {%block content %}
+
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-secondary" role="alert">
+            are you sure want to delete {{Item}} ?
+        </div>
+        <form method="POST" action="{% url 'eliminar_docente' Item.docente_id %}">
+
+            {% csrf_token %}
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <a class="btn btn-outline-secondary mr-1" href="{% url 'listar_docentes'%}">Cancel</a>
+
+                <button class="btn btn-outline-danger" type="submit">Delete</button></div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% block title %} Listado de docentes{% endblock %} {%block content %}
+
+<main>
+    <div class="container-fluid">
+        <div class="card w-75">
+            <div class="card-body">
+                <h5 class="card-title">Search user</h5>
+                <form method="GET">
+                    
+                    Name:
+                    {{myFilter.form.nombre }}
+                    {{myFilter.form.carrera.label_tag }}
+                    {{myFilter.form.carrera }}
+
+                    <button class=" btn-outline-secondary btn-sm" type="submit">Search</button>                    
+                </form>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="card w-75">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                User
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Task</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% if Docentes %} {% for docente in Docentes %}
+                            <tr>
+                                <td>{{docente.nombre}}</td>
+                                <td>{{docente.apellidos}}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-primary mr-1 rounded"
+                                            href="{% url 'editar_docente' docente.docente_id %}">Edit</a>
+                                        <a class="btn btn-outline-secondary rounded"
+                                            href="{% url 'eliminar_docente' docente.docente_id %}">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {%endfor%} {%endif%}
+                        </tbody>
+                    </table>
+                    <a type="button" class="btn btn-success" href="{% url 'export_docentes_xls'%}">Excel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}

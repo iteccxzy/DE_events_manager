@@ -1,0 +1,75 @@
+{% extends 'base.html' %}{% block title %} Contacto{% endblock %} {% block content %}
+
+<main>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-9 mt-2">
+        <div class="card w-75">
+          <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            Contact
+          </div>
+          <div class="card-body">
+           
+            <form id="contact-form">
+              <input type="hidden" name="contact_number" />
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="exampleFormControlInput1"
+                  name="user_name"
+                  placeholder="name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control form-control-sm"
+                  id="exampleFormControlInput1"
+                  name="user_email"
+                  placeholder="name@example.com"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Message</label
+                >
+                <textarea
+                  class="form-control form-control-sm"
+                  id="exampleFormControlTextarea1"
+                  name="message"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <input
+                class="btn btn-outline-primary btn-sm mt-2"
+                type="submit"
+                value="Send"
+              />
+
+              {%if messages%}
+              <div id="messages">
+                {%for message in messages%}
+                <p>{{message}}</p>
+                {%endfor%}
+              </div>
+              {%endif%}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

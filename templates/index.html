@@ -1,0 +1,135 @@
+{% extends "base.html" %} {% block title %} Eventos del día {% endblock %} {%block content %}
+<main>
+
+    <div class="container-fluid">
+        <br>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        Meeting:
+                        {{Conf_ts}}
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">
+                            Detalles
+
+                        </a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        Test:
+                        {{Conf_me}}
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">Detalles</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        Class:
+                        {{Conf_cu}}
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">Detalles</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">
+                        Open  class:
+                        {{Conf_ca}}
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">Detalles</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Search Events</h5>
+                <form method="GET" class="form-inline">
+
+                    {{myFilter.form.fecha.label_tag }}
+                    {{myFilter.form.fecha }}
+
+                    <button class="ml-1 btn btn-outline-secondary btn-sm" type="submit">Search</button>
+
+                </form>
+            </div>
+        </div>
+        <br>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Events
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Departments</th>
+                                <th>Sections</th>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>time</th>
+                                <th>Channel</th>
+                                <th>Category</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% if Tutorias %} {% for t in Tutorias %}
+                            <tr>
+                                <td>{{t.confirmacion.carrera.descripcion}}</td>
+                                <td>{{t.confirmacion.materia.descripcion}}</td>
+                                <td>{{t.confirmacion.docente.apellidos}}&#44; {{t.confirmacion.docente.nombre}}</td>
+                                <td>{{t.fecha | date:" d M "}}</td>
+                                <td>{{t.hora}}</td>
+                                <td>{{t.confirmacion.canal.descripcion}}</td>
+                                <td>{{t.confirmacion.categoria.descripcion}}</td>
+                                <td>
+                                    <select class="resultado form-control form-control-sm" data-url3="{% url 'save_resultado' %}"
+                                        data_tuto="{{t.tutoria_id}}">
+                                        <option value="0">{{t.resultado.descripcion}}</option>
+                                        <option value="1">ok</option>
+                                        <option value="2">problema con</option>
+                                        <option value="3">problema audio</option>
+                                        <option value="4">problema video</option>
+                                        <option value="5">otros</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            {%endfor%}
+
+                            {%endif%}
+                        </tbody>
+                    </table>
+                    {% if Tutorias %}
+                    <a class="btn btn-success" href="{% url 'export_events_xls'%}?fech={{Tutorias.0.fecha |date:'Y-m-d'}}"> Excel</a>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

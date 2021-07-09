@@ -1,0 +1,39 @@
+{% extends 'base.html' %}{% block title %} Perfil{% endblock %} {% block content %}
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-info" href="{% url 'listar_tutorias' %}"> &#8592; go back</a>
+			<hr>
+			<h3 style="text-align: center">Account Profile</h3>
+			<hr>
+			<img class="img-thumbnail" src="{{request.user.perfiles.foto.url}}" >
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				<p>
+					{{form.nombre}}
+				</p>
+				<p>
+					{{form.tel}}
+				</p>
+				<p>
+					{{form.email}}
+				</p>
+				<p>
+					{{form.foto}}
+				</p>
+				
+		
+			<input class="btn btn-primary" type="submit" name="Update Information" value="update">
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

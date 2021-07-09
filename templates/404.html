@@ -1,0 +1,13 @@
+{% load static%}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{% static '/img/error-404-monochrome.svg' %}" >
+    <div class="card-body">
+        <h5 class="card-title">Page no found </h5>
+        <p class="card-text"></p>
+        <a href="{%url 'listar_tutorias'%}">
+            <i class="fas fa-arrow-left mr-1"></i>
+            go home
+        </a>
+    </div>
+</div>
