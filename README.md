@@ -1,7 +1,7 @@
 # *DE_events_manager: allows you to manage events.*
 
 
-- *Allows regitrar new events of different features and add participants.*
+- *Allows add new events of different features and add participants.*
 - *Manage users, groups and user profiles.*
 - *Contact Form.*
 - *API to receive requests from the client application.*
